@@ -1,0 +1,38 @@
+buildscript {
+    ext.kotlin_version = '1.2.10'
+    ext.retrofit = '2.3.0'
+    ext.rxjava2Adapter = '2.3.0'
+    ext.rxjava2 = '2.1.9'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "io.reactivex.rxjava2:rxjava:$rxjava2"
+    compile "com.squareup.retrofit2:retrofit:$retrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$rxjava2Adapter"
+    testCompile "com.squareup.retrofit2:retrofit-mock:$retrofit"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
